@@ -1,0 +1,38 @@
+@import "header.css";
+@import "preloader.css";
+@import "fonts.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@font-face {
+  font-family: 'font604f1c3a415541f6eb591703c63cf3a2';
+      
+      src:    url('https://nomail.com.ua/files/eot/604f1c3a415541f6eb591703c63cf3a2.eot?#iefix') format('embedded-opentype'),
+              url('https://nomail.com.ua/files/woff/604f1c3a415541f6eb591703c63cf3a2.woff') format('woff'),
+              url('https://nomail.com.ua/files/woff2/604f1c3a415541f6eb591703c63cf3a2.woff2') format('woff2');
+  }
+  
+  @font-face { font-family: 'XeniaCameoC';  src: local('XeniaCameoC'), url('https://nomail.com.ua/files/woff/604f1c3a415541f6eb591703c63cf3a2.woff') format('woff'); }
+  
+  
+  
+  
+  /*````````````````````````````````` noMail.com.ua - Каталог шрифтов ```````````````````````````````````````*/
+  
+  
+  #xeniacameoc { font-family:'XeniaCameoC'; }
+  .font604f1c3a415541f6eb591703c63cf3a2 { font-family: 'font604f1c3a415541f6eb591703c63cf3a2'; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 600px;
+  margin: 0 auto;
+  min-height: 200px;
+  border: 1px solid rgb(104, 3, 3);
+}
+
+  
