@@ -1,18 +1,23 @@
 import setHendler from './hendler.component'
 import importAll from './../helpers/importAll.helper'
 import CreateFruitL1 from './../components/frontend/level1category/CreateFruitL1.component';
+import {RouterBase} from './../routing/Router'
+import {FruitL1} from './../routing/RoutersPath'
 
-const Level1Hendler = (elements, app, mainContent) => {
+const Level1Hendler = (elements, app, mainContent, MODE) => {
 
   const reduser = (e) => {
     e = event.target
     switch (e.id) {
 
       case 'fruit':
-        let fruit = []
-        fruit = importAll(require.context('./../img/categoryL1/fruit/', true, /\.png$/), fruit)
-        CreateFruitL1(app , mainContent, fruit)
-        console.log(fruit)
+          FruitL1(app, mainContent, MODE)
+          RouterBase.navigate('FruitL1')
+        // let fruit = []
+        // fruit = importAll(require.context('./../img/categoryL1/fruit/', true, /\.png$/), fruit)
+        // CreateFruitL1(app , mainContent, fruit)
+        // console.log(fruit)
+
         break
       case 'vegetables':
         alert('vegetables')

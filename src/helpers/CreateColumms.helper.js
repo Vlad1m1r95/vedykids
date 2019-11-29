@@ -1,5 +1,8 @@
 import { CreateDOMElement , CloneElement} from './newDomel'
 import render from './render'
+import MODE from './../lang/lang'
+import translate from './translate'
+
 import imgapple from './../img/level1Item/pear.png'
 import imgtomato from './../img/level1Item/tomato.png'
 import imgcar from './../img/level1Item/car.png'
@@ -8,6 +11,10 @@ import imgvolf from './../img/level1Item/volf.png'
 import imgfamily from './../img/level1Item/family.png'
 import imgsweater from './../img/level1Item/sweater.png'
 import imgteacher from './../img/level1Item/teacher.png'
+
+
+
+
 
 
 const CreateColumms = (number , Size, action) => {
@@ -25,7 +32,8 @@ const CreateColumms = (number , Size, action) => {
   }
   const textDefaultProperty = {
     el : 'span',
-    text : 'Фрукты',
+    text : translate(MODE, 'Фрукты'),
+    
     classList : 'col-img-text'
   }
   
@@ -92,7 +100,7 @@ for (let col = 2 ; col <= numberOfColumns;  col++){
     img.id = arraIdAction[col - 1]
     imgtext.innerText = arrayText[col - 1]
     // action()
-    
+     imgtext.innerText = translate(MODE, imgtext.innerText)
     render(imgtext, imgblock)
     render(img, imgblock)
     render(imgblock, colitem)

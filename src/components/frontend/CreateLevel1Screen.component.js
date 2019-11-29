@@ -3,6 +3,9 @@ import render, {renderBeforeEnd, renderAll} from '../../helpers/render'
 import colorfulText from '../../helpers/fonts/colorful.helper'
 import CreateColumms from '../../helpers/CreateColumms.helper'
 import Level1Hendler from '../../hendlers/level1.hendler'
+import MODE from './../../lang/lang'
+import translate from './../../helpers/translate'
+
 
 const CreateLevel1Screen = (app, rowContent) => {
 const OldrowContent = rowContent
@@ -18,13 +21,11 @@ const TitletextPropert = {
 
 const TitleText = CreateDOMElement(TitletextPropert)
 
+
 const arrayCollum = CreateColumms(8, 3 , Level1Hendler)
 
 //! Colorful Text
 OldrowContent.remove()
-
-const Oldpreloader = document.getElementById('preloader')
-Oldpreloader.remove()
 
 const divProperty = {
   id: 'preloader',
@@ -38,20 +39,19 @@ const divProperty = {
  
  
  
- Function.prototype.Preloader = function(preloader){
-    preloader = loader
-    return preloader 
-  }
+
 
 
  const MainContant = document.getElementById('mainContent')
-//  render(row, conrainer)
 
 
 render(TitleText, colContent)
 render(colContent, rowContent)
 renderAll(arrayCollum, rowContent)
 render(rowContent, MainContant)
+
+ TitleText.innerHTML = translate(MODE, TitleText.innerHTML)
+console.log(TitleText.innerHTML)
 colorfulText(TitleText, 'content')
 
 

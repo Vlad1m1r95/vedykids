@@ -54,6 +54,7 @@ export const CreateDOMElement = (Objectproperty) => {
   if(Objectproperty.el === undefined){
     Objectproperty.el = 'div'
   }
+ 
    const el = document.createElement(Objectproperty.el)
    if(Objectproperty.id){
     el.id = Objectproperty.id
@@ -76,6 +77,10 @@ export const CreateDOMElement = (Objectproperty) => {
    if(Objectproperty.alt) {
     el.alt = Objectproperty.alt
    }
+
+  //  if(Objectproperty.data){
+  //   el.dataset.image = Objectproperty.data
+  // }
    
 
    return el

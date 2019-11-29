@@ -1,6 +1,6 @@
-import setHendler from './../hendler.component'
-import { RouterBase } from './../../routing/Router'
-import { ChoiceLevel } from './../../routing/RoutersPath'
+import setHendler from '../hendler.component'
+import { RouterBase } from '../../routing/Router'
+import { ChoiceLevel , Setting } from '../../routing/RoutersPath'
 
 
 
@@ -9,17 +9,20 @@ const ContentMainPageHendler = (elements, app, container, colContent) => {
 
  
 
-  const reduser = (e) => {
+  const reduсer = (e) => {
     e = event.target
     switch(e.id){
       case 'imgPlay' :
-      
+           
           ChoiceLevel(app, container, colContent)
           RouterBase.navigate('ChoiceLevel')
       break
 
       case 'imgSetting' :
-        alert('настройки')
+          Setting(container)
+          RouterBase.navigate('Setting')
+         
+        // alert('НАстройки')
       break
 
       case 'imgExit' :
@@ -27,13 +30,15 @@ const ContentMainPageHendler = (elements, app, container, colContent) => {
       break
       
   }
+ 
 }
   
 
 
 elements.forEach(element => {
-  setHendler(element , 'click', false, reduser)
+  setHendler(element , 'click', false, reduсer)
 })
+
 }
 
 export default ContentMainPageHendler

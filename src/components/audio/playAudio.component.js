@@ -7,7 +7,7 @@ const PlayAudio = (src) => {
   const audio = new Audio(src)
    audio.play()
    audio.currentTime = 2
-   audio.volume = 0.5
+   audio.volume = 0.1
 
   Function.prototype.AudioStop = function(stopAudio){
     stopAudio = audio

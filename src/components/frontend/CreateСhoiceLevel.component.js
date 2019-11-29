@@ -3,6 +3,9 @@ import newDOM$el from './../../helpers/newDomel'
 import { renderBeforeEnd, renderAll } from './../../helpers/render'
 import changeImageOnHover from './../../helpers/changeImageOnHover'
 import ChoiceLevelHendler from './../../hendlers/levels.hendler/СhoiceLevel.hendler'
+import MODE from './../../lang/lang'
+import translate from './../../helpers/translate'
+
 //? images
 import sun_levelimg1 from './../../img/level-image/levelimglight/level1.png'
 import sun_levelimg2 from './../../img/level-image/levelimglight/level2.png'
@@ -10,6 +13,8 @@ import sun_levelimg3 from './../../img/level-image/levelimglight/level3.png'
 import levelimg1 from './../../img/level-image/levelimglight/level1-default.png'
 import levelimg2 from './../../img/level-image/levelimglight/level2-default.png'
 import levelimg3 from './../../img/level-image/levelimglight/level3-default.png'
+
+
 
 
 
@@ -44,7 +49,9 @@ const CreateСhoiceLevel = (app, container, colContent) => {
 
 
   const TittleText = document.getElementById('letsPlayText')
+
   TittleText.innerHTML = 'Давай выберем уровень !'
+  TittleText.innerHTML = translate(MODE, TittleText.innerHTML)
   //? colorful text
   //   console.log(logo1.innerHTML)
   colorfulText(TittleText, 'content')
@@ -62,10 +69,7 @@ const CreateСhoiceLevel = (app, container, colContent) => {
   container.insertAdjacentElement('afterbegin', preloader)
   const loader = document.getElementById('preloader')
   console.log(loader)
-  Function.prototype.Preloader = function(preloader){
-    preloader = loader
-    return preloader 
-  }
+
   
 
 

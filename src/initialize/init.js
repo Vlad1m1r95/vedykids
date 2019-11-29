@@ -1,79 +1,47 @@
 import {importAllHash} from './../helpers/importAll.helper'
+import {importAll} from './../helpers/importAll.helper'
+import MODE from './../lang/lang'
+import initGameMenu from './init.GameMenu'
+import initChoiceLevel from './init.ChoiceLevel'
+import initLevel1 from './init.Level1'
+import initFruitL1 from './init.FruitLevel1'
+import initSetting from './init.setting'
 
 
 
-//! Audio
-import { voises } from './../voice/ru/script/voices'
-import Audio from './../music/mp3/lion-cub-and-turtle.mp3'
-//? gif
-import  gif1 from './../img/Spinner-Preloader/dance_fruit_big.gif'
+
+// let componentsarr = []
+// let ComponentsArray =  importAllHash(require.context('./../components/', true, /\.js$/), componentsarr)
 
 
+// let hashComponent = Object.create(null)
 
-
-let componentsarr = []
-let ComponentsArray =  importAllHash(require.context('./../components/', true, /\.js$/), componentsarr)
-
-let hashComponent = Object.create(null)
-
-ComponentsArray.forEach((component ,i) => {
+// ComponentsArray.forEach((component ,i) => {
   
-  if(component.default !=  null || undefined){
-    let keycomponent =  component.default.name
-    hashComponent[keycomponent] = component.default
+//   if(component.default !=  null || undefined){
+//     let keycomponent =  component.default.name
+//     hashComponent[keycomponent] = component.default
     
-    // console.log(component)
+//     // console.log(component)
 
-  }
-})
-let Components = hashComponent
-console.log(Components)
-
-
-// console.log(Components.PlayAudio)
-
-// console.log(ComponentsArray[0].default.name)
-
-//    <--START GAME SCREEN-->
- const initStartGame  = () => {
-  const music =  Audio
-  Components.PlayAudio(music)
-  Components.createUserPanel(app, container) // тут не видит default  :=(
-  Components.Loadtimer(app, 3000, Components.createUserPanel.Preloader(), gif1)
-  Components.PlayVoice(voises.letsplayRussian, 3000)
-  
-}
+//   }
+// })
+// let Components = hashComponent
 
 
-//    <--CHOICE LEVEL  SCREEN-->
- const initChoiceLevel = (app, container, colContent ) => {
-  console.log(app)
-  if(container){
-    container.innerHTML = ""
-    
-  }
-   Components.PlayAudio.AudioStop()
-   Components.PlayAudio(Audio)
-   Components.CreateСhoiceLevel(app, container, colContent)
-   Components.Loadtimer(app, 3000, Components.CreateСhoiceLevel.Preloader())
-   Components.PlayVoice(voises.letsChooseALevel, 3000)
-}
 
-//    <-- LEVEL 1  SCREEN-->
-  const initLevel1 = (app, container) => {
- 
-        
-  Components.PlayAudio.AudioStop()
-  Components.PlayAudio()
-  Components.CreateLevel1Screen(app, container) 
-  Components.Loadtimer(app, 3000, Components.CreateLevel1Screen.Preloader())
-  Components.PlayVoice(voises.letsChooseAGroup, 3000)
-}
+
+//Prototype add Preloader
+
+
+///init
 
 const init = {
-  StartGame : initStartGame,
+  GameMenu :  () => initGameMenu(),
   ChoiceLevel : (app, container, colContent) => initChoiceLevel(app, container, colContent),
-  Level1  : (app, container, colContent) => initLevel1(app, container, colContent)
+  Level1  : (app, container, ) => initLevel1(app, container),
+  FruitL1 : (app, mainContent, ) => initFruitL1(app, mainContent),
+  Setting : (container) => initSetting(container)
 }
 
 export default init

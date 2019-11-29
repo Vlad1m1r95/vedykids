@@ -1,4 +1,4 @@
-const importAll = (r, categoryname) => {
+export const importAll = (r, categoryname) => {
   
   r.keys().forEach((s, i, arr) => categoryname[i] = r(s))
 

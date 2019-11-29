@@ -5,7 +5,7 @@ import {RouterBase}  from './../../routing/Router'
 
 
 
-const ChoiceLevelHendler = (elements, app, container) => {
+const ChoiceLevelHendler = (elements, app, container, MODE) => {
 
   const reduser = (e) => {
     e = event.target
@@ -13,19 +13,9 @@ const ChoiceLevelHendler = (elements, app, container) => {
       
       case 'level1img' :
         console.log(container)
-        Level1(app, container)
+        Level1(app, container, MODE)
         RouterBase.navigate('Level1')
-
-        
-        //  PlayAudio.AudioStop()
-        //  PlayAudio()
-        // CreateLevel1Screen(app, container)
-        // Loadtimer(app, 3000, CreateLevel1Screen.Preloader())
-        // PlayVoice(letschoose, 3000)
-
-      break
-     
-        
+      break  
   }
 }
   

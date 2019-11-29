@@ -12,7 +12,6 @@ const loadData = (app = app, time = 700 , preloader, gifs) => {
     setTimeout(resolve, time)
     lineLoader(app, time + 300)
     const allGif = [gif1, gif2]
-    // let gif = allGif[Math.floor(Math.random()*allGif.length)]
     let gif =  gifs || allGif[Math.floor(Math.random()*allGif.length)]
     preloaderEl.style.background = `#fbfbfb url(${gif}) no-repeat center center`
       

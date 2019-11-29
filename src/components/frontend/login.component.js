@@ -67,53 +67,6 @@ const createLoginForm = (main) => {
 	render(row , container)
 	const allElem = [Preloader,container]
 	renderAll(allElem, main)
-	// render(container, main)
-
-
-
-	// const login = {
-	// 	lineloader : `<div id="lineloader" class="lineloader"> </div> `,
-	// 	preloder   : newDOM$el('div' , 'preloader', []),
-	// 	imgsrc     : `//ssl.gstatic.com/accounts/ui/avatar_2x.png`,
-	// 	signin     : newDOM$el('button' , 'signin', 
-	// 								[`btn`, `btn-lg`, `btn-primary`, `btn-block`,  `btn-signin`],
-	// 								`Sign In`, 'submit'
-	// 	),
-	// 	rememberme : `remember-me`,
-	//  forgotPass  :`Forgot the password?`,
-	// //  registration: `<a id="registration" href="registration">registration </a>`
-	//  registration: newDOM$el('a', 'reg', [], `registration`, )
-
-	// }
-	// 	console.log(document.getElementById('formcard'))
-
-	// console.log(`${login.signin.outerHTML}`)
-
-
-	// const preloader = `${login.preloder.outerHTML}`
-	// const imgProfile = ` <img id="profile-img" class="profile-img-card" src="${login.imgsrc}" />`
-	// const profileName = `<p id="profile-name" class="profile-name-card"></p>`
-	// const form = `<form  id="form-signin" class="form-signin">
-	// 	<span id="reauth-email" class="reauth-email"></span>
-	// 	<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-	// 	<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-	// 	<div id="remember" class="checkbox">
-	//     <label>
-	//         <input type="checkbox" value="remember-me"> ${login.rememberme}
-	//     </label>
-	// 		</div>
-	// 		${login.signin.outerHTML}
-	// </form >   <a href="#" class="forgot-password">
-	// ${login.forgotPass}
-	// </a>
-	// ${login.registration.outerHTML}`
-	// const cart = `<div id="parentcard" class="parent-card"><div id="formcard" class="card card-container"></div></div>`
-	// const container = `<div  id="container" class="container">  ${cart}</div>
-	// `
-
-	// main.insertAdjacentHTML('afterbegin', container)
-	// const currentitem =  main.children[0].children[0].children[0]
-	// wrapper(currentitem, null ,[preloader,imgProfile, profileName, form])
 
 }
 

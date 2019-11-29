@@ -51,6 +51,7 @@ class Router  {
       handler = re
       re = ""
     }
+    
     this.routes.push({ re: re, handler: handler })
     return this
 

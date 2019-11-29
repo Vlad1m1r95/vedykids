@@ -2,7 +2,7 @@ const PlayVoice = (src, time) => {
   setTimeout(function speack(){
     const voice = new Audio(src)
     voice.play()
-    voice.currentTime = 0
+    voice.currentTime = 0.5
     voice.volume = 1
   }, time)
 

@@ -4,9 +4,12 @@ import createLoginForm from './components/frontend/login.component'
 import Loadtimer from './components/frontend/preloader.component'
 import PlayAudio from './components/audio/playAudio.component'
 import Audio from './music/mp3/lion-cub-and-turtle.mp3'
+import { RouterBase } from './routing/Router'
+
 
 //? gif
 import  gif1 from './img/Spinner-Preloader/dance_fruit_big.gif'
+
 
 
 
@@ -16,6 +19,8 @@ const App = newDOM$el('div' , 'app', [])
 
 
 
+      
+    
 
 
 
@@ -55,6 +60,10 @@ window.onload = function(){
  const preloader = document.getElementById('preloader')
    Loadtimer(app, 3000, preloader, gif1)
    LoginHendler(eventelem, app, container)
+
+   window.addEventListener('storage', () => {
+      alert('change')
+   })
   
 } 
 
@@ -63,6 +72,9 @@ window.onload = function(){
 // const runAudio = (Audio) => {
 //   PlayAudio(Audio)
 // }
+
+//prototype
+
 
 
 

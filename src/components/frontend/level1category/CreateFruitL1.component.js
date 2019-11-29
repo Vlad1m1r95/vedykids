@@ -4,9 +4,13 @@ import imgApple from './../../../img/level1Item/apple.png'
 import imgBack from './../../../img/categoryl1/back.png'
 import imgNext from './../../../img/categoryl1/next.png'
 import colorfulText from './../../../helpers/fonts/colorful.helper'
-import CategoryL1Hendler from './../../../hendlers/levels.hendler/categoryL1.hendler'
+import SliderEliments from './../../../helpers/category/sliderElements'
+import translate from './../../../helpers/translate'
 
-const CreateFruitL1 = (app, mainContent ,arrayimg) => {
+const CreateFruitL1 = (app, mainContent ,arrayimg, MODE) => {
+
+ 
+
 
   const rowContentOld = document.getElementById('rowContent')
   rowContentOld.remove
@@ -16,43 +20,78 @@ const CreateFruitL1 = (app, mainContent ,arrayimg) => {
   }
   const imgDefaultProperty = {
     el: 'img',
-    id: 'appleImg',
-    classList: 'img-fluid img-block-center'
+    id: 'currentImage',
+    classList: 'img-fluid img-block-center',
+   
+
 
   }
   const spanDefaultProperty = {
-    el: 'span',
+    id : 'spanText',
+    el : 'span',
     classList: 'image-text',
-    text: 'Яблоко'
+    text: 'Яблоко',
   }
 
+
   rowContentOld.remove()
+  const oldPreloader  = document.getElementById('preloader')
+  oldPreloader.remove()
+  const newPreloader = CreateDOMElement(divDefaultProperty)
+  newPreloader.id = 'preloader'
+  newPreloader.className = 'preloader fruit1-pre'
+  
+  
 
   const rowContent = CreateDOMElement(divDefaultProperty)
   const colItem = CloneElement(rowContent, 'ColItem')
   const ImgBlock = CloneElement(rowContent, 'ImgBlock')
-  const imgageapple = CreateDOMElement(imgDefaultProperty)
-  const imageBack = CloneElement(imgageapple, 'imageBack')
-  const imageNext = CloneElement(imgageapple, 'imageNext')
+  const imgagCurrent = CreateDOMElement(imgDefaultProperty)
+  const imageBack = CloneElement(imgagCurrent, 'imageBack')
+  const imageNext = CloneElement(imgagCurrent, 'imageNext')
   const textImage = CreateDOMElement(spanDefaultProperty)
 
-  imgageapple.src = imgApple
+
+
+
+
+  imgagCurrent.src = imgApple
+  imgagCurrent.dataset.image = 'apple'
   imageBack.src = imgBack
   imageNext.src = imgNext
 
   ImgBlock.className = 'mt-block img-block-center'
   colItem.className = 'col-8 offset-2'
 
- 
+  render(newPreloader, app)
   render(ImgBlock, colItem)
   render(colItem, rowContent)
   render(rowContent, mainContent)
-  renderAll([imageBack, imgageapple, imageNext, textImage] , ImgBlock)
-  colorfulText(textImage, 'col-image')
-  
-  const eventElement  = [imgageapple, imageBack,imageNext]
+  renderAll([imageBack, imgagCurrent, imageNext, textImage] , ImgBlock)
 
-  CategoryL1Hendler(eventElement, arrayimg)
+  textImage.innerHTML = translate(MODE, textImage.innerHTML)
+
+  colorfulText(textImage, 'col-image')
+  const preloader = document.getElementById('preloader')
+  console.log(preloader)
+  
+  // const eventElement  = [imgageapple, imageBack,imageNext]
+  const back = document.getElementById('imageBack')
+  const current = document.getElementById('currentImage')
+  const next = document.getElementById('imageNext')
+  const imageText = document.getElementById('spanText')
+
+  const navigateButton = {
+    back : back,
+    next : next
+  }
+  const Currentimage = {
+    current : current,
+    title : imageText,
+  }
+  SliderEliments(MODE, arrayimg, navigateButton, Currentimage)
+
+  // CategoryL1Hendler(eventElement, arrayimg)
 }
 
 export default CreateFruitL1
