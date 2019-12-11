@@ -1,6 +1,6 @@
 import setHendler from './hendler.component'
-import { RouterBase } from './../routing/Router'
-import { StartGame } from './../routing/RoutersPath'
+import { Navigate, StartGame } from './../routing/RoutersPath'
+import state  from './../lang/MODE'
 
 
 
@@ -11,8 +11,8 @@ const LoginHendler = (elements) => {
     switch(e.id){
       
       case 'vkButton' :
-        StartGame()
-        RouterBase.navigate('StartGame') 
+        StartGame(state)
+        Navigate('StartGame') 
         break
   }
 }

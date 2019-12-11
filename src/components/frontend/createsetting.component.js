@@ -5,9 +5,11 @@ import ENG from './../../img/setting/ENG.png'
 import OK from './../../img/setting/OK.png'
 import { getLAng } from './../../lang/lang'
 import settingScreenHendler from './../../hendlers/setting.hendler';
+import state from './../../lang/MODE'
 
-const createSettingScreen = (container) => {
- 
+
+const createSettingScreen = (container, mode = state) => {
+
   const settingProperty = {
     ru  : Ru,
     eng : ENG,
@@ -27,14 +29,18 @@ const createSettingScreen = (container) => {
  const eventelements = [Ruflag, ENGflag, OKbutton]
 
 settingScreenHendler(eventelements, Content)
-let MODE = getLAng(eventelements)
 
-console.log(`setting mode : ${MODE}`)
+Ruflag.addEventListener('click', (mode) => getLAng(mode))
+ENGflag.addEventListener('click',(mode) => getLAng(mode))
+
+
   
 
 
 }
 
-
+if(document.getElementById('RU')){
+ 
+}
 
 export default createSettingScreen

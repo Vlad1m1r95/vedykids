@@ -1,36 +1,51 @@
 import setHendler from './../hendler.component'
-import { Level1 } from './../../routing/RoutersPath'
-import {RouterBase}  from './../../routing/Router'
+import { Navigate, Level } from './../../routing/RoutersPath'
+import getContentHashImages from './../../helpers/getContentHashImages'
+import { Images } from './../../img/script/images'
 
 
 
 
-const ChoiceLevelHendler = (elements, app, container, MODE) => {
 
+const ChoiceLevelHendler = (elements, app, container, state) => {
+  const re = {
+    path: /.*\//g,
+    type: /.png/g,
+  }
   const reduser = (e) => {
     e = event.target
-    switch(e.id){
-      
-      case 'level1img' :
-        console.log(container)
-        Level1(app, container, MODE)
-        RouterBase.navigate('Level1')
-      break  
+    switch (e.id) {
+
+      case 'level1img':
+        Level(app, container, state, Images)
+        Navigate('Level/1')
+        break
+      case 'level2img':
+        Level(app, container, state, Images)
+        Navigate('Level/2')
+        break
+      case 'level3img':
+        Level(app, container, state, Images)
+        Navigate('Level/3')
+        break
+
+    }
+
+
   }
-}
-  
+
 
 
   // for(let elem in elements){
   //   setHendler(elements[elem] , 'click', false, reduser)
   // }
   elements.forEach(element => {
-      setHendler(element , 'click', false, reduser)
+    setHendler(element, 'click', false, reduser)
   })
 
   // 
   // setHendler(reg , 'click', false, foo)
-  
+
 }
 
 export default ChoiceLevelHendler

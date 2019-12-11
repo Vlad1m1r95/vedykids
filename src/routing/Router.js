@@ -1,117 +1,116 @@
-class Router  {
-  constructor (routes, mode,  root) {
-    this.routes = routes,
-    this.mode   = mode,
-    this.root   = root
+export default class Router {
+  constructor(routes, mode, root) {
+    this.routes = routes;
+    this.mode = mode;
+    this.root = root;
   }
+  // historyState(re) {
+  //   return history.pushState(null, null, this.routes.push({ re: re }))
+  // }
 
   config(options) {
-
     this.mode =
       options &&
-      options.mode &&
-      options.mode == "history" &&
-      !!history.pushState
+        options.mode &&
+        options.mode == "history" &&
+        !!history.pushState
         ? "history"
-        : "hash"
+        : "hash";
     this.root =
       options && options.root
         ? "/" + this.clearSlashes(options.root) + "/"
-        : "/"
-    return this
-
+        : "/";
+    return this;
   }
-  getFragment() {
 
-    let fragment = ""
+  getFragment() {
+    let fragment = "";
     if (this.mode === "history") {
       fragment = this.clearSlashes(
         decodeURI(location.pathname + location.search)
       );
-      fragment = fragment.replace(/\?(.*)$/, "")
-      fragment = this.root != "/" ? fragment.replace(this.root, "") : fragment
+      fragment = fragment.replace(/\?(.*)$/, "");
+      fragment = this.root != "/" ? fragment.replace(this.root, "") : fragment;
     } else {
-      let match = window.location.href.match(/#(.*)$/g)
-      fragment = match ? match[1] : ""
+      let match = window.location.href.match(/#(.*)$/g);
+      fragment = match ? match[1] : "";
     }
-    return this.clearSlashes(fragment)
-
+    return this.clearSlashes(fragment);
   }
-  clearSlashes(path){
 
+  clearSlashes(path) {
     return path
       .toString()
       .replace(/\/$/g, "")
-      .replace(/^\//g, "")
-
+      .replace(/^\//g, "");
   }
-  add(re, handler){
 
+  add(re, handler) {
     if (typeof re == "function") {
-      handler = re
-      re = ""
+      handler = re;
+      re = "";
     }
-    
-    this.routes.push({ re: re, handler: handler })
-    return this
-
+    this.routes.push({ re: re, handler: handler });
+    return this;
   }
-  
-  remove(param){
+
+  remove(param) {
     this.routes.forEach(router => {
-
-      if(router.handler === param || router.re.toString() ===  param.toString()){
-        routes.splice(i, 1)
-        return this
+      if (
+        router.handler === param ||
+        router.re.toString() === param.toString()
+      ) {
+        routes.splice(i, 1);
+        return this;
       }
-    })
-    return this
-
+    });
+    return this;
   }
 
-  check(f){
-    let fragment = f || this.getFragment()
+  check(f) {
+    let fragment = f || this.getFragment();
     this.routes.forEach(router => {
-      console.log(router)
-      let match = fragment.match(router.re)
-       if (match) {
-      //   //match.shift();
-         router.handler.apply({}, match)
-         return this
-       }
-
-    })
-    return this
-  }
-
-  listen(){
-    let self = this
-    let current = self.getFragment()
-    const fn = () => {
-      if (current !== self.getFragment()) {
-        current = self.getFragment();
-        self.check(current);
+      let match = fragment.match(router.re);
+      if (match) {
+        match.shift();
+        router.handler.apply({}, match);
+        return this;
       }
-    }
-    clearInterval(this.interval)
-    this.interval = setInterval(fn, 50)
-    return this
+    });
+    return this;
   }
-  navigate(path){
+
+  listen() {
+    window.addEventListener(
+      "navigate",
+      e => {
+        this.check(this.getFragment());
+      },
+      false
+    );
+
+    return this;
+  }
+
+  navigate(path) {
     path = path ? path : "";
     if (this.mode === "history") {
-      history.pushState(null, null, this.root + this.clearSlashes(path))
+      history.pushState(null, null, this.root + this.clearSlashes(path));
     } else {
       window.location.href =
-        window.location.href.replace(/#.*$/g, "") + "#" + path
+        window.location.href.replace(/#.*$/g, "") + "#" + path;
     }
-    return this
-  }
 
+    const event = new CustomEvent("navigate", { detail: path });
+    window.dispatchEvent(event);
+
+    return this;
+  }
 }
 
 
-export const RouterBase = new Router([], 'history', '/')
 
-RouterBase.listen()
+// export const RouterBase = new Router([], 'history', '/')
+
+// RouterBase.listen()
 

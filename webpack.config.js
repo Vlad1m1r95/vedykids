@@ -8,8 +8,8 @@ const autoprefixer = require('autoprefixer')
 module.exports = {
   entry: './src/index.js',
   output: {
-     filename: 'bundle.js',
-     path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
     //  path: 'build/',
     //  file: 'bundle.js',
     //  publicPath: 'dist/assets',
@@ -58,7 +58,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader','postcss-loader', 'less-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.(sass|scss$)/,
@@ -76,29 +76,34 @@ module.exports = {
       //   ],
       // },
       {
-       test: /\.hbs$/,
-       use: [{
-         loader: 'handlebars-loader',
-         options: {
-           name : '[path][name].[ext]',
-           outputPath: 'Viewes',
-           publicPath: 'Viewes',
-         }
-       }]
+        test: /\.hbs$/,
+        use: [{
+          loader: 'handlebars-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'Viewes',
+            publicPath: 'Viewes',
+          }
+        }]
       },
 
-      { 
+      {
         test: /\.(jpg|svg|png|gif|webp)$/,
-        use:[ {
+        use: [{
           loader: 'file-loader',
-          options:  {
+          options: {
+            // name: '[name].[ext]',
+            // // name: '[path][name].[ext]',
+            // outputPath: 'img',
+            // publicPath: '/img',
+
+            // postTransformPublicPath: (p) => `__webpack_public_path__ + ${p}`,
             name: '[path][name].[ext]',
-            outputPath: 'img',
-            publicPath: 'img',
-            postTransformPublicPath: (p) => `__webpack_public_path__ + ${p}`,
+            context: 'src/img',
+            outputPath: '/img',
           }
         },
-          { 
+        {
           loader: 'image-webpack-loader',
           options: {
             mozjpeg: {
@@ -117,38 +122,42 @@ module.exports = {
               interlaced: false,
             },
             // the webp option will enable WEBP
-            webp: {
-              quality: 75
-            }
+            // webp: {
+            //   // quality: 75
+            // }
           }
-            
-          }
+
+        }
         ]
       },
       {
-        test: /\.(mp3|m4a)$/,
-        use:[{
+        test: /\.(mp3|m4a|mp4)$/,
+        use: [{
           loader: 'file-loader',
-          options:  {
+          options: {
             name: '[path][name].[ext]',
-            outputPath: 'media',
-            publicPath: 'media',
+            context: 'src',
+            outputPath: '/media',
+
+            // name: '[name].[ext]',
+            // outputPath: 'media',
+            // publicPath: '/media',
           },
-          
+
         },
         ]
-        
-        
+
+
       },
 
-      { 
-        test: /\.(js)$/, 
-        exclude: /node_modules/, 
-        loader: "babel-loader" 
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       }
 
 
-      
+
     ]
   }
 }

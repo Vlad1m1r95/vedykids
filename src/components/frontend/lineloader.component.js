@@ -5,7 +5,7 @@ const lineLoader = (parent, time) => {
   let alltime = Math.round(time/100)
   let start = 0
   
-  console.log( 'прогресс :' + progressLoader.value)
+  
   const intervalId = setInterval(function(element = progressLoader){
     if(start >= 100){
       clearInterval(intervalId)
@@ -21,7 +21,3 @@ export default lineLoader
 
 
 
-
-// let lineLoader = document.getElementById('lineloader')
-//     console.log(lineLoader)
-//     console.log(time)

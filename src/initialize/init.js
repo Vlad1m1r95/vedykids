@@ -1,47 +1,21 @@
-import {importAllHash} from './../helpers/importAll.helper'
-import {importAll} from './../helpers/importAll.helper'
-import MODE from './../lang/lang'
+
 import initGameMenu from './init.GameMenu'
 import initChoiceLevel from './init.ChoiceLevel'
-import initLevel1 from './init.Level1'
-import initFruitL1 from './init.FruitLevel1'
-import initSetting from './init.setting'
+import initLevel from './init.Level'
+import initCategory from './init.Category'
+import initSetting from './init.Setting'
+import initHomePage from './init.Homepage'
 
 
-
-
-// let componentsarr = []
-// let ComponentsArray =  importAllHash(require.context('./../components/', true, /\.js$/), componentsarr)
-
-
-// let hashComponent = Object.create(null)
-
-// ComponentsArray.forEach((component ,i) => {
-  
-//   if(component.default !=  null || undefined){
-//     let keycomponent =  component.default.name
-//     hashComponent[keycomponent] = component.default
-    
-//     // console.log(component)
-
-//   }
-// })
-// let Components = hashComponent
-
-
-
-
-//Prototype add Preloader
-
-
-///init
 
 const init = {
-  GameMenu :  () => initGameMenu(),
-  ChoiceLevel : (app, container, colContent) => initChoiceLevel(app, container, colContent),
-  Level1  : (app, container, ) => initLevel1(app, container),
-  FruitL1 : (app, mainContent, ) => initFruitL1(app, mainContent),
-  Setting : (container) => initSetting(container)
+  GameMenu: (state) => initGameMenu(state),
+  ChoiceLevel: (app, container, colContent, state) => initChoiceLevel(app, container, colContent, state),
+  Level: (app, container, state, Images, level) => initLevel(app, container, state, Images, level),
+  Category: (app, mainContent, state, imagesCategory, category, level) => initCategory(app, mainContent, state, imagesCategory, category, level),
+  Setting: (container) => initSetting(container),
+  HomePage: (app, preloader) => initHomePage(app, preloader),
+
 }
 
 export default init

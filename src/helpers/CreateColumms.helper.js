@@ -1,64 +1,64 @@
-import { CreateDOMElement , CloneElement} from './newDomel'
+import { CreateDOMElement, CloneElement } from './newDomel'
 import render from './render'
-import MODE from './../lang/lang'
 import translate from './translate'
-
-import imgapple from './../img/level1Item/pear.png'
-import imgtomato from './../img/level1Item/tomato.png'
-import imgcar from './../img/level1Item/car.png'
-import imgdog from './../img/level1Item/pig.png'
-import imgvolf from './../img/level1Item/volf.png'
-import imgfamily from './../img/level1Item/family.png'
-import imgsweater from './../img/level1Item/sweater.png'
-import imgteacher from './../img/level1Item/teacher.png'
+import getContentHashImages from './getContentHashImages'
 
 
 
 
 
 
-const CreateColumms = (number , Size, action) => {
-  const numberOfColumns = number 
-  const columnSize = Size 
+
+
+
+
+
+const CreateColumms = (number, Size, MODE, Images) => {
+  console.log(Images[0])
+  console.log(Images)
+
+
+  const numberOfColumns = number
+  const columnSize = Size
 
   const colDefaultProperty = {
     id: 'col-1-item',
-    classList : `col-${columnSize} my-auto`
+    classList: `col-${columnSize} mb0`
   }
 
   const imgDefaultProperty = {
-    el : 'img',
-    classList : 'img-fluid img-level'
+    el: 'img',
+    classList: 'img-fluid img-level'
   }
   const textDefaultProperty = {
-    el : 'span',
-    text : translate(MODE, 'Фрукты'),
-    
-    classList : 'col-img-text'
-  }
-  
-  const col1item =  CreateDOMElement(colDefaultProperty)
-  const imgblock1 = CreateDOMElement(colDefaultProperty)
-  const img1      =  CreateDOMElement(imgDefaultProperty)
-  img1.src = imgapple
-  img1.alt = 'imageCol1'
-  img1.id   = 'fruit'
-  const imgtext1 = CreateDOMElement(textDefaultProperty)
-    imgblock1.className = 'img-block-center'
-    imgblock1.id = 'imgBlock1'
-    render(imgtext1,imgblock1)
-    render(img1,imgblock1)
-    render(imgblock1, col1item)
-    const parent = document.getElementById('imgBlock1')
+    el: 'span',
+    text: translate(MODE, 'Фрукты'),
 
-  console.log(parent)
-  let arrayText   = [
+    classList: 'col-img-text'
+  }
+
+  const col1item = CreateDOMElement(colDefaultProperty)
+  const imgblock1 = CreateDOMElement(colDefaultProperty)
+  const img1 = CreateDOMElement(imgDefaultProperty)
+  img1.src = Images[0]
+  img1.alt = 'imageCol1'
+  img1.id = 'fruit'
+  const imgtext1 = CreateDOMElement(textDefaultProperty)
+  imgblock1.className = 'img-block-center'
+  imgblock1.id = 'imgBlock1'
+  render(imgtext1, imgblock1)
+  render(img1, imgblock1)
+  render(imgblock1, col1item)
+
+
+
+  let arrayText = [
     'Фрукты',
     'Овощи',
     'Транспорт',
     'Домашние животные',
     'Дикие животные',
-    'Семья',
+    'Мебель',
     'Одежда',
     'Профессии',
 
@@ -71,43 +71,39 @@ const CreateColumms = (number , Size, action) => {
     'transport',
     'Pets',
     'Wildanimals',
-    'family',
-    'Clothing',
+    'Furniture',
+    'Clothes',
     'Professions',
 
 
   ]
-  let arrayCollum = [col1item]  
-  let arrayImages = [
-    imgapple,
-    imgtomato,
-    imgcar,
-    imgdog,
-    imgvolf,
-    imgfamily,
-    imgsweater,
-    imgteacher,
-   ] 
 
-for (let col = 2 ; col <= numberOfColumns;  col++){
 
-    let colitem =  CloneElement(col1item, `col-${col}-item`, undefined , false)
-    let imgblock = CloneElement(imgblock1, `imgblock${col}` , undefined , false)
+
+
+  let arrayCollum = [col1item]
+
+
+
+  for (let col = 2; col <= numberOfColumns; col++) {
+
+    let colitem = CloneElement(col1item, `col-${col}-item`, undefined, false)
+    let imgblock = CloneElement(imgblock1, `imgblock${col}`, undefined, false)
     let img = CloneElement(img1)
     let imgtext = CloneElement(imgtext1)
 
-    img.src = arrayImages[col - 1]
+    img.src = Images[col - 1]
     img.id = arraIdAction[col - 1]
     imgtext.innerText = arrayText[col - 1]
     // action()
-     imgtext.innerText = translate(MODE, imgtext.innerText)
+    imgtext.innerText = translate(MODE, imgtext.innerText)
     render(imgtext, imgblock)
     render(img, imgblock)
     render(imgblock, colitem)
-    
+
     arrayCollum.push(colitem)
-}
-return arrayCollum
+  }
+  return arrayCollum
 
 }
 

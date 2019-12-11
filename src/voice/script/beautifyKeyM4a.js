@@ -1,7 +1,7 @@
 const beautifyKeyM4a = (array, re) => {
   let hashvoices = Object.create(null)
 
-  array.forEach((voice , i) => {
+  array.forEach((voice) => {
     let keyvoice = voice.replace(re, "")
      let a = keyvoice.replace(/\/$/g, "")
      let aa = a.replace(/.m4a/g, "")

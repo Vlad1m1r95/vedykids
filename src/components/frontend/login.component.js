@@ -12,14 +12,18 @@ import  googleimg from './../../img/social-icon/google.png'
 
 
 const createLoginForm = (main) => {
+	
 
 	const divProperty = {
 		id: 'container',
 		classList: 'container-fluid',
 	}
+	const preloaderProperty = {
+		id : 'preloader' 
+	}
 
 	const container = CreateDOMElement(divProperty)
-
+	const preloader = CreateDOMElement(preloaderProperty)
 	const row = CloneElement(container, 'row-content')
 	row.className = 'row'
 	const col = CloneElement(container, 'col-content')
@@ -41,8 +45,8 @@ const createLoginForm = (main) => {
 	const imgButton = CreateDOMElement(imgProperty)
 
 	
-	const Preloader = CloneElement(container, 'preloader')
-	Preloader.className = ""
+	// const Preloader = CloneElement(container, 'preloader')
+	// Preloader.className = ""
 	//social button
 	const socialwrap = CloneElement(container, 'socialWrapper')
 	socialwrap.className = 'social-wrapper'
@@ -65,8 +69,8 @@ const createLoginForm = (main) => {
 	render(ButtonEnter , col)
 	render(col , row)
 	render(row , container)
-	const allElem = [Preloader,container]
-	renderAll(allElem, main)
+	let content = [preloader, container]
+	renderAll(content, main)
 
 }
 

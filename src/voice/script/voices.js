@@ -1,7 +1,8 @@
 import {importAllHash} from '../../helpers/importAll.helper'
 import beautifyKeyM4a from './beautifyKeyM4a'
 import chocevoiseMODE from './chocevoiseMODE'
-import  MODE from './../../lang/lang'
+// import  MODE from './../../lang/lang'
+import state from './../../lang/MODE'
 
 
 // Arrayvoice
@@ -46,7 +47,12 @@ const screen = {ru : voisecScreenRU , eng : voisecScreenENG }
 const group  = {ru : voisecGroupRU , eng : voisecGroupENG }
 
 
+// const MODE = state.getstate()
 
+ const voicesarr = (MODE) => {
+   return chocevoiseMODE(MODE, screen, group)
+}
 
-export let voices = chocevoiseMODE(MODE, screen, group)
+export default voicesarr
+// export let voices = chocevoiseMODE(MODE, screen, group)
 

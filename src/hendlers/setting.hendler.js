@@ -4,8 +4,7 @@ import  ENGSelect from  './../img/setting/SelectENG.png'
 import RU from './../img/setting/RU.png'
 import ENG from './../img/setting/ENG.png'
 import OK from './../img/setting/OK.png'
-import { RouterBase } from './../routing/Router'
-import { StartGame } from './../routing/RoutersPath'
+import { Navigate , StartGame } from './../routing/RoutersPath'
 import PlayAudio from './../components/audio/playAudio.component'
 
 
@@ -61,11 +60,12 @@ let LANG = ''
         // if(content){
         //   content.remove()
         // }
-        if(PlayAudio){
+        
+        //  StartGame()  
+         if(PlayAudio){
           PlayAudio.AudioStop()
         }
-          // StartGame()
-          RouterBase.navigate('StartGame')
+         Navigate('StartGame') 
 
         break
     }
