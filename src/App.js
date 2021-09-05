@@ -5,11 +5,11 @@ import Loadtimer from './components/frontend/preloader.component'
 //? gif
 import gif1 from './img/Spinner-Preloader/dance_fruit.gif'
 import webp1 from './img/Spinner-Preloader/dance_fruit.webp'
-
-
-
 import { Navigate, HomePage, StartGame } from './routing/RoutersPath'
 
+import testTypeScript from './components/frontend/test.ts'
+// import testPhp from './Template/testphp.php'
+// import fileContent from "./Template/testphp.php"
 
 
 // if (window.history.state) {
@@ -19,7 +19,7 @@ import { Navigate, HomePage, StartGame } from './routing/RoutersPath'
 // }
 
 
-
+testTypeScript()
 
 
 const AppStart = () => {
@@ -57,7 +57,7 @@ const AppStart = () => {
     const eventelem = [vkbutton]
     LoginHendler(eventelem, application, container)
 
-
+    app.innerHTML = testPhp()
 
   }
 

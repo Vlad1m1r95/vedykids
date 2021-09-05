@@ -5,6 +5,7 @@ import initLevel from './init.Level'
 import initCategory from './init.Category'
 import initSetting from './init.Setting'
 import initHomePage from './init.Homepage'
+import initLoaderCategory from './init.LoaderCategory'
 
 
 
@@ -15,6 +16,7 @@ const init = {
   Category: (app, mainContent, state, imagesCategory, category, level) => initCategory(app, mainContent, state, imagesCategory, category, level),
   Setting: (container) => initSetting(container),
   HomePage: (app, preloader) => initHomePage(app, preloader),
+  LoaderCategory: (context, category, timer) => initLoaderCategory(context, category, timer)
 
 }
 

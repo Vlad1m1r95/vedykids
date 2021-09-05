@@ -7,7 +7,6 @@ import DictionaryCheckWord from './../../helpers/trycatch/DictionaryCheck'
 
 import GameMenuTemplate from './../../Template/GameMenu.hbs'
 
-
 //? images
 import settingimg from './../../img/icon/setting.png'
 import playimg from './../../img/icon/play.png'
@@ -22,34 +21,27 @@ import cursorDefault from './../../img/cursor/default32px.svg'
 
 
 
-const createGameMenu = (Content) => {
+const createGameMenu = (app) => {
+
 
   const MODE = state.getstate()
   const GameMenuProperty = {
-    title: DictionaryCheckWord(MODE, 'Привет ! Давай играть !'),
+    // title: DictionaryCheckWord(MODE, 'Привет ! Давай играть !'),
     setting: settingimg,
     Play: playimg,
     Exit: exitimg,
   }
 
-  const oldcontainer = document.getElementById('container')
-  // if(oldcontainer){
-  //   oldcontainer.remove()
-  // }
-  let oldpreloader = document.getElementById('preloader')
-  oldpreloader.remove()
-  // Content.insertAdjacentHTML('beforeEnd', GameMenuTemplate(GameMenuProperty))
-  Content.innerHTML = GameMenuTemplate(GameMenuProperty)
+  // let oldpreloader = document.getElementById('preloader')
+  // oldpreloader.remove()
+  app.innerHTML = GameMenuTemplate(GameMenuProperty)
 
   //? colorful text
   const PlayText = document.getElementById('letsPlayText')
-  colorfulText(PlayText, 'content')
-
-
+  // colorfulText(PlayText, 'content')
 
   //! add event
   const rowContent = document.getElementById('row-content')
-  const app = document.getElementById('app')
   const setting = document.getElementById('imgSetting')
   const play = document.getElementById('imgPlay')
   const exit = document.getElementById('imgExit')

@@ -8,6 +8,7 @@ import { Images } from './../../img/script/images'
 
 
 const ChoiceLevelHendler = (elements, app, container, state) => {
+  console.log(container)
   const re = {
     path: /.*\//g,
     type: /.png/g,
@@ -18,10 +19,12 @@ const ChoiceLevelHendler = (elements, app, container, state) => {
 
       case 'level1img':
         Level(app, container, state, Images)
+
         Navigate('Level/1')
         break
       case 'level2img':
         Level(app, container, state, Images)
+
         Navigate('Level/2')
         break
       case 'level3img':

@@ -1,4 +1,7 @@
+import changeTitle from './../data/dinamic/title'
+import state from './../lang/MODE'
 export default class Router {
+
   constructor(routes, mode, root) {
     this.routes = routes;
     this.mode = mode;
@@ -36,6 +39,9 @@ export default class Router {
       fragment = match ? match[1] : "";
     }
     return this.clearSlashes(fragment);
+  }
+  getState() {
+    return state.getstate()
   }
 
   clearSlashes(path) {
@@ -79,15 +85,34 @@ export default class Router {
     });
     return this;
   }
+  back() {
+    window.history.back()
+  }
+  changeTitle() {
+    const fragment = this.getFragment()
+    changeTitle(fragment, this.getState())
+  }
 
   listen() {
     window.addEventListener(
       "navigate",
       e => {
+        // alert('Navigate')
         this.check(this.getFragment());
+        this.changeTitle()
+
       },
       false
     );
+    window.addEventListener(
+      "popstate",
+      () => {
+        alert('change state')
+        this.check(this.getFragment());
+
+      },
+      false
+    )
 
     return this;
   }
@@ -95,7 +120,12 @@ export default class Router {
   navigate(path) {
     path = path ? path : "";
     if (this.mode === "history") {
-      history.pushState(null, null, this.root + this.clearSlashes(path));
+      try {
+        history.pushState(null, null, this.root + this.clearSlashes(path));
+      } catch (error) {
+        console.log(error)
+      }
+
     } else {
       window.location.href =
         window.location.href.replace(/#.*$/g, "") + "#" + path;

@@ -9,6 +9,8 @@ import level from './level'
 import choiceLevel from './choiceLevel'
 import homePage from './homePage'
 import setting from './setting'
+import loaderCategory from './loaderCategory'
+
 
 
 const RouterBase = new Router([], 'history', '/')
@@ -18,6 +20,7 @@ let routerInit = {
 }
 
 export const Navigate = (path) => RouterBase.navigate(path)
+export const Back = () => RouterBase.back()
 
 
 
@@ -28,6 +31,7 @@ const LevelPath = (app, container, state, Images) => level(app, container, state
 const CategoryPath = (app, container, state, imagesCategory, categoryimg) => category(app, container, state, imagesCategory, categoryimg, routerInit)
 const SettingPath = (container) => setting(container, routerInit)
 const HomePagePath = (app, preloader) => homePage(app, preloader, routerInit)
+const LoaderCategoryPath = (context, category, timer) => loaderCategory(context, category, timer, routerInit)
 
 
 export const HomePage = HomePagePath
@@ -36,6 +40,7 @@ export const ChoiceLevel = ChoiceLevelPath
 export const Level = LevelPath
 export const StartGame = StartGamePath
 export const Category = CategoryPath
+export const LoaderCategory = LoaderCategoryPath
 
 
 RouterBase.listen()

@@ -13,12 +13,26 @@ export const renderBeforeEnd = (elements, parents) => {
 const renderCombines = (elements, parent, mode) => {
   if (mode === 'html') {
     elements.forEach(element => {
-      parent.insertAdjacentHTML("beforeend", element)
+      try {
+        parent.insertAdjacentHTML("beforeend", element)
+      } catch (error) {
+        console.log(error)
+        console.log(parent)
+        console.log(element)
+      }
+
     })
 
   } else {
     elements.forEach(element => {
-      parent.insertAdjacentElement("beforeend", element)
+      try {
+        parent.insertAdjacentElement("beforeend", element)
+      } catch (error) {
+        console.log(error)
+        console.log(parent)
+        console.log(element)
+      }
+
     })
   }
 

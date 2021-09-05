@@ -86,6 +86,13 @@ module.exports = {
           }
         }]
       },
+      // {
+      //   test: /\.php$/,
+      //   loaders: [
+      //     'html-minify',
+      //     'php-loader',
+      //   ]
+      // },
 
       {
         test: /\.(jpg|svg|png|gif|webp)$/,
@@ -99,8 +106,8 @@ module.exports = {
 
             // postTransformPublicPath: (p) => `__webpack_public_path__ + ${p}`,
             name: '[path][name].[ext]',
-            context: 'src/img',
-            outputPath: '/img',
+            context: '/src/img',
+            outputPath: 'img',
           }
         },
         {
@@ -151,7 +158,7 @@ module.exports = {
       },
 
       {
-        test: /\.(js)$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
         loader: "babel-loader"
       }

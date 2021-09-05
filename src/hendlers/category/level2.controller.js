@@ -1,139 +1,124 @@
-import setHendler from './../hendler.component'
-import $get from '../../helpers/DOM/getElementById'
-import $query from '../../helpers/DOM/getQueryselector'
-import DictionaryCheckWord from './../../helpers/trycatch/DictionaryCheck'
-import replacePathImage from './../../helpers/category/re/replacepath.helper'
-import colorfulText from './../../helpers/fonts/colorful.helper'
-import { Navigate } from './../../routing/RoutersPath';
+import setHendler from "./../hendler.component";
+import $get from "../../helpers/DOM/getElementById";
+import replacePathImage from "./../../helpers/category/re/replacepath.helper";
+import colorfulText from "./../../helpers/fonts/colorful.helper";
+import { Navigate, LoaderCategory, Back } from "./../../routing/RoutersPath";
+import shuffle from "./../../helpers/shuffle.helper";
+import createQuestions from "./../../helpers/createQuestions.helper";
+import { Images } from "./../../img/script/images";
+import Level1 from "./../../components/frontend/category/Level1";
+// import LoaderCategory from './../../components/frontend/category/LoaderCategory'
+import getContentHashImages from "./../../helpers/getContentHashImages";
 
+const level2Controller = (app, elements, context, images, text) => {
+  Array.prototype.rand = function getRandom(arr) {
+    console.log(arr);
+    return this[Math.floor(Math.random() * this.length)];
+  };
+  Array.prototype.index = function getRandom(arr) {
+    console.log(arr);
+    return Math.floor(Math.random() * this.length);
+  };
 
-const level2Controller = (app, elements, context, images) => {
-  let step = images.length
-  let title = $get('titleText')
-  let array = [1, 2, 3, 4, 5, 6, 7, 8]
-  let colid = array.rand()
-  let progressimage = $get(`image-${colid}`)
-  let progressbar = $get(`progressBar`)
-  // progressimage.setAttribute('alt', 'what??')
-  console.log('Изображение')
-  console.log(progressimage)
-  console.log('Изображение')
-  // progressimage.alt = `what??`
+  let title = $get("titleText");
+  let array = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  let arraybutton = ["leftImage", "RightImage"];
 
+  let questions = createQuestions(context.mode, images);
+  shuffle(questions);
+  shuffle(arraybutton);
 
+  title.innerHTML = questions[0].title;
+  colorfulText(title, "title");
+  title.dataset.trueWord = questions[0].correctAnswer;
+  $get(arraybutton[0]).src = `/${questions[0].correctImage}`;
+  $get(arraybutton[0]).alt = questions[0].correctAnswer;
+  $get(arraybutton[1]).src = `/${questions[0].image}`;
+  $get(arraybutton[1]).alt = replacePathImage(context.mode, questions[0].image);
 
-  let progress = 0
+  const re = {
+    path: /.*\//g,
+    type: /.png/g,
+  };
+  const ContentHashIamges = {
+    ...getContentHashImages(images, re, context.mode),
+    Category: category,
+  };
+  const rowContent = $get("rowContent");
+  const contextProperty = {
+    parent: rowContent,
+    mode: context.mode,
+    hashimages: ContentHashIamges,
+    collums: 8,
+    size: 3,
+  };
+  let category = context.category;
+  console.log(category);
+  const parent = contextProperty.parent;
+
+  let iterator = 1;
 
   const reducer = (e) => {
-    console.log(images)
-    e = event.target
+    e = event.target;
+    shuffle(arraybutton);
 
-    Array.prototype.rand = function getRandom(arr) {
-      console.log(arr)
-      return this[Math.floor(Math.random() * this.length)]
-    }
-    Array.prototype.index = function getRandom(arr) {
-      console.log(arr)
-      return Math.floor(Math.random() * this.length)
+    if (
+      iterator >= questions.length &&
+      e.alt === title.getAttribute("data-true-word")
+    ) {
+      let colid = array.rand();
+      let progressimage = $get(`image-${colid}`);
+      progressimage.src = e.src;
 
-    }
+      // setTimeout(() => Navigate('Level/2'), 3000)
+      // Level(app, container, context.mode, Images)
 
-    let progressbarImg = []
-    progressbarImg.push(progressimage.src)
+      LoaderCategory(contextProperty, category, 33000);
+      Navigate("LoaderCategory");
 
-    // let showimages = progressbarImg.filter(x => !images.includes(x))
+      // setTimeout(() => Navigate('Level/2'), 3000)
 
-
-    let index1 = getRandomInt(0, 8)
-    let index2 = getRandomInt(0, 8)
-    if (index1 === index2) {
-      index1 = Math.floor((index1 * index2) + 1 / 10)
-    }
-
-    if (context.trueword === e.alt) {
-
-
-      let image1 = images.rand()
-      let image2 = images.rand()
-      console.log(image1)
-      console.log(image2)
-
-      $get('leftImage').src = image1
-      $get('RightImage').src = image2
-
-      let text1 = replacePathImage(context.mode, image1)
-      let text2 = replacePathImage(context.mode, image2)
-      let words = [text1, text2]
-      $get('leftImage').alt = text1
-      $get('RightImage').alt = text2
-      context.trueword = DictionaryCheckWord(context.mode, words.rand())
-      title.innerHTML = DictionaryCheckWord(context.mode, `show, where!`) + ` ` + context.trueword
-      if (progress === step) {
-        alert('ура')
-
-        container = $get('maincontent')
-        app.removeChild()
-        Level(app, container, state, Images)
-        Navigate('Level/2')
-      } else {
-        progress++
-
-      }
-      // progressbar.src = e.src
-      progressimage.src = e.src
-      progressimage.alt = e.alt
-      context.progress.innerHTML = `${progress}/${step}`
-
-      alert('Правильно')
+      // while (parent.firstChild) {
+      //   parent.removeChild(parent.firstChild)
+      // }
     } else {
+      if (e.alt === title.getAttribute("data-true-word")) {
+        alert("Правильно");
 
-      let image1 = images.rand()
-      let image2 = images.rand()
+        let colid = array.rand();
+        array = array.filter((number) => number !== colid);
+        let progressimage = $get(`image-${colid}`);
 
+        progressimage.src = e.src;
+        let progress = $get(`blockNumberProgress`);
 
-      $get('leftImage').src = image1
-      $get('RightImage').src = image2
+        try {
+          title.innerHTML = questions[iterator].title;
+          title.dataset.trueWord = questions[iterator].correctAnswer;
+          $get(arraybutton[0]).alt = questions[iterator].correctAnswer;
+          $get(arraybutton[0]).src = `/${questions[iterator].correctImage}`;
+          $get(arraybutton[1]).alt = replacePathImage(
+            context.mode,
+            questions[iterator].image
+          );
 
-      let text1 = replacePathImage(context.mode, image1)
-      let text2 = replacePathImage(context.mode, image2)
-      let words = [text1, text2]
-      $get('leftImage').alt = text1
-      $get('RightImage').alt = text2
-
-      context.trueword = DictionaryCheckWord(context.mode, words.rand())
-      title.innerHTML = DictionaryCheckWord(context.mode, `show, where!`) + ` ` + context.trueword
-      alert('не правильно')
-
+          $get(arraybutton[1]).src = `/${questions[iterator].image}`;
+          iterator++;
+          progress.innerHTML = `${iterator}/${questions.length}`;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Не правильно");
+      }
     }
+  };
 
+  elements.forEach((element) => {
+    setHendler(element, "click", false, reducer);
+  });
+  // window.onload = getRandomTwoElements(images)
+};
 
-    // let arr1 = [image1]
-    // let newarr = images.filter(image => !arr1.includes(image))
-    // image2 = newarr.rand()
-    // let arr2 = [image2]
-    // let newarr2 = images.filter(image => !arr2.includes(image))
-    // image1 = newarr2.rand()
-
-
-
-
-
-    // images = images.filter(image => replacePathImage(context.mode, image) !== replacePathImage(context.mode, e.src))
-
-
-  }
-
-
-
-
-  elements.forEach(element => {
-    setHendler(element, 'click', false, reducer)
-  })
-
-}
-
-export default level2Controller
+export default level2Controller;

@@ -12,6 +12,7 @@ import sun_levelimg3 from './../../img/level-image/levelimglight/level3.png'
 import levelimg1 from './../../img/level-image/levelimglight/level1-default.png'
 import levelimg2 from './../../img/level-image/levelimglight/level2-default.png'
 import levelimg3 from './../../img/level-image/levelimglight/level3-default.png'
+import ChoiceLevelTemplate from './../../Template/ChoiceLevel.hbs'
 
 
 
@@ -26,57 +27,34 @@ import levelimg3 from './../../img/level-image/levelimglight/level3-default.png'
 const CreateСhoiceLevel = (app, container, colContent, state) => {
   const MODE = state
 
+  const ChoiceLevelProperty = {
+    level1: levelimg1,
+    level1_alt: 'level1',
+    level2: levelimg2,
+    level2_alt: 'level2',
+    level3: levelimg3,
+    level3_alt: 'level3',
 
-  const level1col = newDOM$el('div', 'level1col', ['col-4'])
-  const level2col = newDOM$el('div', 'level2col', ['col-4'])
-  const level3col = newDOM$el('div', 'level3col', ['col-4'])
+  }
 
-
-
-  const imglevel1 = newDOM$el('img', 'level1img', ['level-img', 'center-block'], `${levelimg1}`, 'level1')
-  const imglevel2 = newDOM$el('img', 'level2img', ['level-img', 'center-block'], `${levelimg2}`, 'level1')
-  const imglevel3 = newDOM$el('img', 'level3img', ['level-img', 'center-block'], `${levelimg3}`, 'level1')
-
-
-  const childeElements = [imglevel1, imglevel2, imglevel3,]
-  const childePerents = [level1col, level2col, level3col]
-
-
-  renderBeforeEnd(childeElements, childePerents)
-  const elements = [colContent, level1col, level2col, level3col]
-  renderAll(elements, container)
-
-
+  app.innerHTML = ChoiceLevelTemplate(ChoiceLevelProperty)
 
 
   const TittleText = document.getElementById('letsPlayText')
+  TittleText.innerHTML = DictionaryCheckWord(MODE, 'Давай выберем уровень !')
 
-  TittleText.innerHTML = 'Давай выберем уровень !'
-  TittleText.innerHTML = DictionaryCheckWord(MODE, TittleText.innerHTML)
   //? colorful text
-  //   console.log(logo1.innerHTML)
   colorfulText(TittleText, 'content')
 
   const srcImageHover = [sun_levelimg1, sun_levelimg2, sun_levelimg3]
   const srcImageDefault = [levelimg1, levelimg2, levelimg3]
+  const levelimage = [...document.querySelectorAll('img')]
 
-  changeImageOnHover(childeElements, srcImageHover, srcImageDefault)
-  const oldpreloader = document.getElementById('preloader')
-  if (oldpreloader) {
-    oldpreloader.remove()
-  }
-  const preloader = newDOM$el('div', 'preloader', [])
-  container.insertAdjacentElement('afterbegin', preloader)
-  const loader = document.getElementById('preloader')
+  changeImageOnHover(levelimage, srcImageHover, srcImageDefault)
 
-
-
-
-
-  //?addEvent 
+  // //?addEvent 
   const rowContent = document.getElementById('row-content')
-  const arrayEventElement = [imglevel1, imglevel2, imglevel3]
-  ChoiceLevelHendler(arrayEventElement, app, rowContent, state)
+  ChoiceLevelHendler(levelimage, app, rowContent, state)
 }
 
 

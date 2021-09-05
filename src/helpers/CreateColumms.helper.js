@@ -40,7 +40,8 @@ const CreateColumms = (number, Size, MODE, Images) => {
   const col1item = CreateDOMElement(colDefaultProperty)
   const imgblock1 = CreateDOMElement(colDefaultProperty)
   const img1 = CreateDOMElement(imgDefaultProperty)
-  img1.src = Images[0]
+  img1.src = `/${Images[0]}`
+
   img1.alt = 'imageCol1'
   img1.id = 'fruit'
   const imgtext1 = CreateDOMElement(textDefaultProperty)
@@ -92,7 +93,7 @@ const CreateColumms = (number, Size, MODE, Images) => {
     let img = CloneElement(img1)
     let imgtext = CloneElement(imgtext1)
 
-    img.src = Images[col - 1]
+    img.src = `/${Images[col - 1]}`
     img.id = arraIdAction[col - 1]
     imgtext.innerText = arrayText[col - 1]
     // action()

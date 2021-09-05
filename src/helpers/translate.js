@@ -38,7 +38,6 @@ const translate = (MODE, input) => {
     { eng: 'train', ru: 'Поезд' },
     { eng: `this is transport`, ru: `Это транспорт` },
     { eng: 'cat', ru: 'Кот' },
-
     { eng: 'chicken', ru: 'Курица' },
     { eng: 'cow', ru: 'Корова' },
     { eng: 'dog', ru: 'Собака' },
@@ -47,9 +46,6 @@ const translate = (MODE, input) => {
     { eng: 'pig', ru: 'Cвинья' },
     { eng: 'sheep', ru: 'Овца' },
     { eng: `these are pets`, ru: `Это домашние животные` },
-
-
-
     { eng: 'bear', ru: 'Медведь' },
     { eng: 'beaver', ru: 'Бобр' },
     { eng: 'elk', ru: 'Лось' },
@@ -59,7 +55,6 @@ const translate = (MODE, input) => {
     { eng: 'tiger', ru: 'Тигр' },
     { eng: 'wolf', ru: 'Волк' },
     { eng: `these are wild animals`, ru: `Это дикие животные` },
-
 
     { eng: 'furniture', ru: 'Мебель' },
     { eng: 'armchair', ru: 'Кресло' },
@@ -71,7 +66,6 @@ const translate = (MODE, input) => {
     { eng: 'stool', ru: 'Табурет' },
     { eng: 'table', ru: 'Стол' },
     { eng: `this is furniture`, ru: `Это мебель` },
-
     { eng: 'blouse', ru: 'блузка' },
     { eng: 'coat', ru: 'пиджак' },
     { eng: 'dress', ru: 'платье' },
@@ -83,7 +77,6 @@ const translate = (MODE, input) => {
     { eng: 'pants', ru: 'штаны' },
     { eng: 'this is clothes', ru: 'Это одежда' },
 
-
     { eng: 'builder', ru: 'Строитель' },
     { eng: 'cook', ru: 'Повар' },
     { eng: 'cosmonaut', ru: 'Космонавт' },
@@ -94,23 +87,14 @@ const translate = (MODE, input) => {
     { eng: 'teacher', ru: 'Учитель' },
     { eng: `these are professions`, ru: `Это профессии` },
 
-
-
     { eng: 'Hi! Let`s play !', ru: 'Привет ! Давай играть !' },
     { eng: 'Let`s choose the level !', ru: 'Давай выберем уровень !' },
     { eng: 'Let `s choose ! ', ru: 'Давай-ка , выбирай !' },
     { eng: `show, where!`, ru: 'Покажи,  Где!' },
     { eng: 'progress', ru: 'Прогресс' },
 
-
-
-
-
-
-
-
   ]
-  let hash = ImageVocabulary[49]
+
 
 
   let words = 'Фрукты;Fruits;Овощи;Vegetables;Транспорт;Transport;Домашние животные;Pets;Дикие животные;Wild animals;Семья;Family;Одежда;Clothes;Профессии;Professions;'
