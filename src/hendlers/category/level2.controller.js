@@ -9,14 +9,17 @@ import { Images } from "./../../img/script/images";
 import Level1 from "./../../components/frontend/category/Level1";
 // import LoaderCategory from './../../components/frontend/category/LoaderCategory'
 import getContentHashImages from "./../../helpers/getContentHashImages";
+import PlayVoice from "../../components/speacks/voice.speack";
+import rightVoiceRu from "../../voice/ru/category/all/well-done-right.m4a";
+import rightVoiceEn from "../../voice/eng/category/all/well-done-right.m4a";
+import noRightVoiceRu from "../../voice/ru/category/all/no-no-right.m4a";
+import noRightVoiceEn from "../../voice/eng/category/all/no-no-right.m4a";
 
 const level2Controller = (app, elements, context, images, text) => {
   Array.prototype.rand = function getRandom(arr) {
-    console.log(arr);
     return this[Math.floor(Math.random() * this.length)];
   };
   Array.prototype.index = function getRandom(arr) {
-    console.log(arr);
     return Math.floor(Math.random() * this.length);
   };
 
@@ -61,21 +64,39 @@ const level2Controller = (app, elements, context, images, text) => {
 
   const reducer = (e) => {
     e = event.target;
+    console.log(e);
+
+    let alt = e.alt;
+    let imgScr = e.src;
     shuffle(arraybutton);
+    if (alt === "left") {
+      alt = $get("leftImage").alt;
+      imgScr = $get("leftImage").src;
+    }
+    if (alt === "right") {
+      alt = $get("RightImage").alt;
+      imgScr = $get("RightImage").src;
+    }
 
     if (
       iterator >= questions.length &&
-      e.alt === title.getAttribute("data-true-word")
+      alt === title.getAttribute("data-true-word")
     ) {
       let colid = array.rand();
       let progressimage = $get(`image-${colid}`);
-      progressimage.src = e.src;
+      progressimage.src = imgScr;
+      if (localStorage.getItem("lang") === "RU") {
+        PlayVoice(rightVoiceRu);
+      } else {
+        PlayVoice(rightVoiceEn);
+      }
 
       // setTimeout(() => Navigate('Level/2'), 3000)
       // Level(app, container, context.mode, Images)
 
-      LoaderCategory(contextProperty, category, 33000);
-      Navigate("LoaderCategory");
+      LoaderCategory(contextProperty, category, 3300);
+      setTimeout(() => Navigate("LoaderCategory"), 1000);
+      setTimeout(() => Navigate("Level/2"), 4000);
 
       // setTimeout(() => Navigate('Level/2'), 3000)
 
@@ -83,38 +104,47 @@ const level2Controller = (app, elements, context, images, text) => {
       //   parent.removeChild(parent.firstChild)
       // }
     } else {
-      if (e.alt === title.getAttribute("data-true-word")) {
-        alert("Правильно");
+      if (alt === title.getAttribute("data-true-word")) {
+        if (localStorage.getItem("lang") === "RU") {
+          PlayVoice(rightVoiceRu);
+        } else {
+          PlayVoice(rightVoiceEn);
+        }
 
         let colid = array.rand();
         array = array.filter((number) => number !== colid);
         let progressimage = $get(`image-${colid}`);
 
-        progressimage.src = e.src;
+        progressimage.src = imgScr;
         let progress = $get(`blockNumberProgress`);
 
-        try {
-          title.innerHTML = questions[iterator].title;
-          title.dataset.trueWord = questions[iterator].correctAnswer;
-          $get(arraybutton[0]).alt = questions[iterator].correctAnswer;
-          $get(arraybutton[0]).src = `/${questions[iterator].correctImage}`;
-          $get(arraybutton[1]).alt = replacePathImage(
-            context.mode,
-            questions[iterator].image
-          );
+        setTimeout(() => {
+          try {
+            title.innerHTML = questions[iterator].title;
+            title.dataset.trueWord = questions[iterator].correctAnswer;
+            $get(arraybutton[0]).alt = questions[iterator].correctAnswer;
+            $get(arraybutton[0]).src = `/${questions[iterator].correctImage}`;
+            $get(arraybutton[1]).alt = replacePathImage(
+              context.mode,
+              questions[iterator].image
+            );
 
-          $get(arraybutton[1]).src = `/${questions[iterator].image}`;
-          iterator++;
-          progress.innerHTML = `${iterator}/${questions.length}`;
-        } catch (error) {
-          console.log(error);
-        }
+            $get(arraybutton[1]).src = `/${questions[iterator].image}`;
+            iterator++;
+            progress.innerHTML = `${iterator}/${questions.length}`;
+          } catch (error) {
+            console.log(error);
+          }
+        }, 1000);
       } else {
-        alert("Не правильно");
+        if (localStorage.getItem("lang") === "RU") {
+          PlayVoice(noRightVoiceRu);
+        } else {
+          PlayVoice(noRightVoiceEn);
+        }
       }
     }
   };
-
   elements.forEach((element) => {
     setHendler(element, "click", false, reducer);
   });

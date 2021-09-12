@@ -31,7 +31,6 @@ const Level2 = (app, imagesCategory, state, category) => {
   };
 
   Array.prototype.rand = function getRandom(arr) {
-    console.log(arr);
     return Math.floor(Math.random() * this.length);
   };
   // random

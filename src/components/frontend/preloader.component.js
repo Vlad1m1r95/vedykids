@@ -9,11 +9,9 @@ import gif3 from "./../../img/Spinner-Preloader/crocodile.gif";
 import webp3 from "./../../img/Spinner-Preloader/crocodile.webp";
 
 const loadData = (app = app, time = 700, preloader, gifs) => {
-  console.log(gifs);
   return new Promise((resolve, reject) => {
-    console.log(document.location.hostname, "hostname");
     let preloaderEl = preloader;
-    console.log(preloaderEl);
+
     setTimeout(resolve, time);
     lineLoader(app, time + 300);
     let allAnimation = [];
@@ -44,7 +42,7 @@ const loadData = (app = app, time = 700, preloader, gifs) => {
 
     animateImage =
       image || allAnimation[Math.floor(Math.random() * allAnimation.length)];
-    console.log(animateImage, "urlPreloaded");
+
     preloaderEl.style.background = `#fbfbfb url(/${animateImage}) no-repeat center center`;
   });
 };

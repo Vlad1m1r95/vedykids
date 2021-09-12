@@ -1,29 +1,26 @@
-import { CreateDOMElement, CloneElement } from '../../helpers/newDomel'
-import render, { renderBeforeEnd, renderAll } from '../../helpers/render'
-import colorfulText from '../../helpers/fonts/colorful.helper'
-import CreateColumms from '../../helpers/CreateColumms.helper'
-import LevelHendler from '../../hendlers/level.hendler'
-import titletext from '../../Template/_bloks/title.hbs'
-import LevelScreenTemplate from '../../Template/LevelScreen.hbs'
-import isclientHeightImage from '../../helpers/fonts/imagesize/clientHeightImage.helper'
-import DictionaryCheckWord from './../../helpers/trycatch/DictionaryCheck'
-import $get from '../../helpers/DOM/getElementById'
-
+import { CreateDOMElement, CloneElement } from "../../helpers/newDomel";
+import render, { renderBeforeEnd, renderAll } from "../../helpers/render";
+import colorfulText from "../../helpers/fonts/colorful.helper";
+import CreateColumms from "../../helpers/CreateColumms.helper";
+import LevelHendler from "../../hendlers/level.hendler";
+import titletext from "../../Template/_bloks/title.hbs";
+import LevelScreenTemplate from "../../Template/LevelScreen.hbs";
+import isclientHeightImage from "../../helpers/fonts/imagesize/clientHeightImage.helper";
+import DictionaryCheckWord from "./../../helpers/trycatch/DictionaryCheck";
+import $get from "../../helpers/DOM/getElementById";
 
 const CreateLevelScreen = (app, rowContent, state, Images, levelDetails) => {
-  const MODE = state
-  const App = document.getElementById('app')
+  const MODE = state;
+  const App = document.getElementById("app");
   let LevelScreenProperty = {
     title: DictionaryCheckWord(MODE, `Давай-ка , выбирай !`),
+  };
+  const LevelScreenContent = LevelScreenTemplate(LevelScreenProperty);
+  const arrayCollum = CreateColumms(8, 3, MODE, Images);
 
-
-  }
-  const LevelScreenContent = LevelScreenTemplate(LevelScreenProperty)
-  const arrayCollum = CreateColumms(8, 3, MODE, Images)
-  console.log(arrayCollum)
-  App.innerHTML = LevelScreenContent
-  const row_Content = $get('rowContent')
-  renderAll(arrayCollum, row_Content)
+  App.innerHTML = LevelScreenContent;
+  const row_Content = $get("rowContent");
+  renderAll(arrayCollum, row_Content);
 
   // const OldrowContent = rowContent
 
@@ -36,10 +33,7 @@ const CreateLevelScreen = (app, rowContent, state, Images, levelDetails) => {
   //   text: 'Давай-ка , выбирай !'
   // }
 
-
   // const TitleText = titletext(titleproperty)
-
-
 
   // //! Colorful Text
   // OldrowContent.remove()
@@ -49,18 +43,9 @@ const CreateLevelScreen = (app, rowContent, state, Images, levelDetails) => {
   // }
   // const preloader = CreateDOMElement(divProperty)
 
-
   // render(preloader, App)
 
-
-
-
-
-
-
-
-  const MainContant = document.getElementById('mainContent')
-
+  const MainContant = document.getElementById("mainContent");
 
   // colContent.insertAdjacentHTML('beforeend', TitleText)
   // // render(TitleText, colContent)
@@ -68,51 +53,42 @@ const CreateLevelScreen = (app, rowContent, state, Images, levelDetails) => {
   // renderAll(arrayCollum, rowContent)
   // render(rowContent, MainContant)
 
-  const title = document.getElementById('titleText')
+  const title = document.getElementById("titleText");
 
-  if (isclientHeightImage('.img-level', 310)) {
-    title.classList.add('normal-title')
+  if (isclientHeightImage(".img-level", 310)) {
+    title.classList.add("normal-title");
   } else {
-    title.classList.add('small-title')
+    title.classList.add("small-title");
   }
 
   // TitleText.innerHTML = translate(MODE, TitleText.innerHTML)
-  colorfulText(title, 'content')
-
-
+  colorfulText(title, "content");
 
   //? Add event
 
-
-
-
   const getAction = (arrayid) => {
-    elementAction = []
-    arrayid.forEach(id => {
-      const actionEl = document.getElementById(id)
-      elementAction.push(actionEl)
-    })
-    return elementAction
-  }
+    elementAction = [];
+    arrayid.forEach((id) => {
+      const actionEl = document.getElementById(id);
+      elementAction.push(actionEl);
+    });
+    return elementAction;
+  };
 
   let arraIdAction = [
-    'fruit',
-    'vegetables',
-    'transport',
-    'Pets',
-    'Wildanimals',
-    'Furniture',
-    'Clothes',
-    'Professions',
-  ]
+    "fruit",
+    "vegetables",
+    "transport",
+    "Pets",
+    "Wildanimals",
+    "Furniture",
+    "Clothes",
+    "Professions",
+  ];
 
-  let elementAction = getAction(arraIdAction)
+  let elementAction = getAction(arraIdAction);
 
+  LevelHendler(elementAction, App, MainContant, state, levelDetails);
+};
 
-  LevelHendler(elementAction, App, MainContant, state, levelDetails)
-
-
-}
-
-
-export default CreateLevelScreen
+export default CreateLevelScreen;

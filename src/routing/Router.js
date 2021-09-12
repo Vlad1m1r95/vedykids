@@ -1,7 +1,7 @@
-import changeTitle from './../data/dinamic/title'
-import state from './../lang/MODE'
+import PlayAudio from "../components/audio/playAudio.component";
+import changeTitle from "./../data/dinamic/title";
+import state from "./../lang/MODE";
 export default class Router {
-
   constructor(routes, mode, root) {
     this.routes = routes;
     this.mode = mode;
@@ -14,9 +14,9 @@ export default class Router {
   config(options) {
     this.mode =
       options &&
-        options.mode &&
-        options.mode == "history" &&
-        !!history.pushState
+      options.mode &&
+      options.mode == "history" &&
+      !!history.pushState
         ? "history"
         : "hash";
     this.root =
@@ -41,14 +41,11 @@ export default class Router {
     return this.clearSlashes(fragment);
   }
   getState() {
-    return state.getstate()
+    return state.getstate();
   }
 
   clearSlashes(path) {
-    return path
-      .toString()
-      .replace(/\/$/g, "")
-      .replace(/^\//g, "");
+    return path.toString().replace(/\/$/g, "").replace(/^\//g, "");
   }
 
   add(re, handler) {
@@ -61,7 +58,7 @@ export default class Router {
   }
 
   remove(param) {
-    this.routes.forEach(router => {
+    this.routes.forEach((router) => {
       if (
         router.handler === param ||
         router.re.toString() === param.toString()
@@ -75,7 +72,7 @@ export default class Router {
 
   check(f) {
     let fragment = f || this.getFragment();
-    this.routes.forEach(router => {
+    this.routes.forEach((router) => {
       let match = fragment.match(router.re);
       if (match) {
         match.shift();
@@ -86,33 +83,30 @@ export default class Router {
     return this;
   }
   back() {
-    window.history.back()
+    window.history.back();
   }
   changeTitle() {
-    const fragment = this.getFragment()
-    changeTitle(fragment, this.getState())
+    const fragment = this.getFragment();
+    changeTitle(fragment, this.getState());
   }
 
   listen() {
     window.addEventListener(
       "navigate",
-      e => {
+      (e) => {
         // alert('Navigate')
         this.check(this.getFragment());
-        this.changeTitle()
-
+        this.changeTitle();
       },
       false
     );
     window.addEventListener(
       "popstate",
       () => {
-        alert('change state')
         this.check(this.getFragment());
-
       },
       false
-    )
+    );
 
     return this;
   }
@@ -123,9 +117,8 @@ export default class Router {
       try {
         history.pushState(null, null, this.root + this.clearSlashes(path));
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-
     } else {
       window.location.href =
         window.location.href.replace(/#.*$/g, "") + "#" + path;
@@ -138,9 +131,6 @@ export default class Router {
   }
 }
 
-
-
 // export const RouterBase = new Router([], 'history', '/')
 
 // RouterBase.listen()
-

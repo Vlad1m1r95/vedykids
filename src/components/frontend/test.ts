@@ -1,5 +1,3 @@
-const testTypeScript = () => {
-  console.log('this is typescript')
-}
+const testTypeScript = () => {};
 
-export default testTypeScript
+export default testTypeScript;

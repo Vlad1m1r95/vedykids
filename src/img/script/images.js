@@ -97,11 +97,10 @@ const StartCategoryImages = () => {
   keysCategory.forEach((category) => {
     FirstImgArr.push(CategoryImages[category][3]);
   });
-  console.log(keysCategory);
+
   return FirstImgArr;
 };
 
 export let Images = StartCategoryImages();
-console.log(Images);
 
 export default GetImagesCategory;

@@ -1,58 +1,36 @@
 const render = (element, parent) => {
-
-  parent.insertAdjacentElement("afterbegin", element)
-}
+  parent.insertAdjacentElement("afterbegin", element);
+};
 
 export const renderBeforeEnd = (elements, parents) => {
   for (let elem in parents) {
-    parents[elem].insertAdjacentElement("beforeEnd", elements[elem])
+    parents[elem].insertAdjacentElement("beforeEnd", elements[elem]);
   }
-
-}
+};
 
 const renderCombines = (elements, parent, mode) => {
-  if (mode === 'html') {
-    elements.forEach(element => {
+  if (mode === "html") {
+    elements.forEach((element) => {
       try {
-        parent.insertAdjacentHTML("beforeend", element)
-      } catch (error) {
-        console.log(error)
-        console.log(parent)
-        console.log(element)
-      }
-
-    })
-
+        parent.insertAdjacentHTML("beforeend", element);
+      } catch (error) {}
+    });
   } else {
-    elements.forEach(element => {
+    elements.forEach((element) => {
       try {
-        parent.insertAdjacentElement("beforeend", element)
+        parent.insertAdjacentElement("beforeend", element);
       } catch (error) {
-        console.log(error)
-        console.log(parent)
-        console.log(element)
+        console.log(error);
+        console.log(parent);
+        console.log(element);
       }
-
-    })
+    });
   }
-
-
-
-
-}
-
+};
 
 export const renderAll = (elements, parents) => {
-
-
-  renderCombines(elements, parents)
-
-}
+  renderCombines(elements, parents);
+};
 // renderAll([['cat', 'dog', 'fish' ] , ['big', 'smal']] , [['animals'] , ['size']])
 
-
-
-export default render
-
-
-
+export default render;

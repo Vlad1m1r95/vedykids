@@ -113,7 +113,7 @@ const SliderEliments = (
         } else {
           result = Back(elpos, iterator);
           current.src = `/${result.elem}`;
-          console.log(result.elem, "result");
+
           current.dataset.image = replacePathImage("ENG", result.elem);
           title.innerText = replacePathImage(MODE, result.elem);
 
@@ -130,7 +130,6 @@ const SliderEliments = (
         break;
       case "imageNext":
         if (iterator >= len) {
-          console.log(iterator);
           LoaderCategory(context, category, 3300);
           Navigate("LoaderCategory");
           VoiceCheck(null, null, loaderVoice, PlayVoice);
@@ -145,9 +144,7 @@ const SliderEliments = (
           colorfulText(title, "col-image");
           try {
             PlayVoice(GroupVoice[`${current.dataset.image}`]);
-          } catch (error) {
-            console.log(error);
-          }
+          } catch (error) {}
         }
 
         break;
